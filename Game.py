@@ -45,11 +45,11 @@ ball.dy = 0.15
 #Pen
 pen = turtle.Turtle()
 pen.speed(0)
-pen.color("blanched almond")
+pen.color("peru")
 pen.penup()
 pen.hideturtle()
 pen.goto(0,-2)
-pen.write(f"Player A: {scoreA}\n\nPlayer B: {scoreB}", align="center", font=("bebas", 20, "normal"))
+pen.write("Press 'q' to quit. \nPlayer A: Press 'A' and 'D' to move left and right. \nPlayer B: Press arrow keys to move left and right. ", align="center", font=("bebas", 14, "normal"))
 
 #Function
 def padA_right():
@@ -76,17 +76,22 @@ def padB_left():
         x -= 30
     padB.setx(x)
 
+def quit():
+    global onPlay
+    onPlay = False
+
 #Keyboard binding
 win.listen()
 win.onkeypress(padA_right, "d")
 win.onkeypress(padA_left, "a")
 win.onkeypress(padB_right, "Right")
 win.onkeypress(padB_left, "Left")
+win.onkeypress(quit, "q")
 
-
+onPlay = True
 
 #Main Game
-while True:
+while onPlay:
     win.update()
 
     #Move ball
